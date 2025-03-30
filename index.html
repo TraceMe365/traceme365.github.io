@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Tracker</title>
+</head>
+<body>
+    <h1>Track Your Location</h1>
+    <button onclick="getLocation()">Get Location</button>
+    <p id="location"></p>
+
+    <script>
+        function getLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        document.getElementById("location").innerText = 
+                            `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    },
+                    (error) => {
+                        document.getElementById("location").innerText = 
+                            `Error: ${error.message}`;
+                    }
+                );
+            } else {
+                document.getElementById("location").innerText = 
+                    "Geolocation is not supported by this browser.";
+            }
+        }
+    </script>
+</body>
+</html>
